@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<hbd>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,26 +9,25 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            /* 🖤🖤🖤 BLACK/GRAY GRADIENT (YOUR REQUEST) 🖤🖤🖤 */
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040, #5a5a5a);
             background-size: 400% 400%; animation: gradientShift 15s ease infinite;
-            height: 100vh; display: flex; justify-content: center; align-items: center;
-            overflow: hidden; cursor: pointer; color: white;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center;
+            overflow-x: hidden; cursor: pointer; color: white;
         }
         @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
         
-        .welcome-screen { text-align: center; animation: pulse 2s infinite; }
+        .welcome-screen { text-align: center; animation: pulse 2s infinite; padding: 2rem; }
         .welcome-title {
-            font-size: 3.5rem; 
+            font-size: clamp(2rem, 8vw, 3.5rem); 
             background: linear-gradient(45deg, #ffffff, #e0e0e0, #d4a7ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             margin-bottom: 2rem; text-shadow: 0 0 30px rgba(255,255,255,0.8);
         }
         .welcome-btn {
             background: linear-gradient(145deg, #333, #555); color: white; border: 2px solid #aaa;
-            padding: 1.5rem 3rem; font-size: 1.5rem; font-weight: 700; border-radius: 50px;
+            padding: 1.5rem 3rem; font-size: clamp(1rem, 4vw, 1.5rem); font-weight: 700; border-radius: 50px;
             cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.6); transition: all 0.3s ease;
-            text-transform: uppercase; letter-spacing: 2px;
+            text-transform: uppercase; letter-spacing: 2px; margin: 1rem 0;
         }
         .welcome-btn:hover { 
             transform: translateY(-5px) scale(1.05); 
@@ -40,50 +39,10 @@
         
         .main-container {
             display: none; text-align: center; 
-            background: rgba(40,40,40,0.95); border: 1px solid rgba(255,255,255,0.1);
-            padding: 3rem 2rem; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            max-width: 500px; backdrop-filter: blur(20px); animation: slideIn 1s ease-out;
-            color: white;
-        }
-        @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .music-controls {
-            position: fixed; top: 20px; right: 20px; z-index: 1000; 
-            background: rgba(40,40,40,0.95); border: 1px solid rgba(255,255,255,0.1);
-            padding: 1rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.8); display: none;
-        }
-        .music-btn { 
-            background: #444; color: white; border: 1px solid #666; padding: 0.8rem 1.2rem; 
-            border-radius: 25px; cursor: pointer; font-size: 1rem; margin: 0 0.5rem; 
-            transition: all 0.3s ease;
-        }
-        .music-btn:hover { transform: scale(1.1); background: #666; box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
-        
-        h1 { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .hearts { font-size: 3rem; animation: heartbeat 1.5s ease-in-out infinite; margin: 1rem 0; }
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .message { font-size: 1.2rem; color: #e0e0e0; margin: 2rem 0; line-height: 1.6; }
-        .countdown { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; flex-wrap: wrap; }
-        .time-unit {
-            background: linear-gradient(145deg, #333, #555); color: white; padding: 1.5rem 1rem;
-            border-radius: 20px; min-width: 80px; box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;
-        }
-        .time-unit:hover { transform: scale(1.05); background: linear-gradient(145deg, #555, #777); }
-        .time-number { font-size: 2.5rem; font-weight: 700; display: block; }
-        .time-label { font-size: 0.9rem; opacity: 0.9; margin-top: 0.2rem; }
-        .fireworks { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-    </style>
-</head>
-<body>
-    <div class="music-controls">
-        <button class="music-btn" onclick="toggleMusic()">🎵 Play/Pause</button>
-        <button class="music-btn" onclick="changeMusic('libu')">💖 Libu-Libong Buwan</button>
-        <button class="music-btn" onclick="changeMusic('party')">🎉 Party</button>
-    </div>
+            background: rgba(40,40,40,0.
     
     <div class="welcome-screen" id="welcomeScreen">
-        <div class="welcome-title">Happy Birthday, My Bebu! ✨</div>
+        <div class="welcome-title">appy birthday, my bebu! </div>
         <br><br>
         <button class="welcome-btn" onclick="revealSurprise()">
             👆 click pls, bawal maarte :p
@@ -98,8 +57,8 @@
         <h1>Happy 21st Birthday, Matty! 🎂✨</h1>
         <div class="hearts">💖💖💖</div>
         <div class="message">
-            Matty, my love! 🥰<br><br>
-            happy birthday, my love 
+            matty, my love! 🥰<br><br>
+            happy birthday, mahal ko 
             if i could gather all the softest words,
             i'd stitch them into a sky just for you—
             so every time you look up,
@@ -134,11 +93,10 @@
 
     <script>
         /* 🎂 MATTY'S 21st BIRTHDAY: April 21, 2005 → 2026 */
-        const BIRTHDAY = new Date(2026, 3, 21); // ✅ APRIL 21st SET!
+        const BIRTHDAY = new Date(2026, 4, 06); // ✅ APRIL 21st SET!
         
         const MUSIC = {
-            libu: "https://www.soundjay.com/misc/sounds/romantic-piano.mp3",
-            party: "https://www.soundjay.com/misc/sounds/party-horns.mp3"
+            libu: "https://youtu.be/G1zOlLtq2-c?si=xCtYcj8Mb31M_5yM; ",
         };
         
         let isPlaying = false; const bgMusic = document.getElementById('bgMusic');
@@ -151,7 +109,7 @@
         }
         
         function playMusic() { 
-            bgMusic.src = MUSIC.libu; 
+            bgMusic.src = MUSIC.
             bgMusic.play().catch(() => {}); 
             isPlaying = true; 
         }
