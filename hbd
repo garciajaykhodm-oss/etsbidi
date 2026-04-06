@@ -1,85 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, My Bebu 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Bebu 💖</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@600&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#1a1a1a,#2d2d2d,#404040,#5a5a5a);
-    background-size:400% 400%;
-    animation:gradientShift 12s ease infinite;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    overflow:hidden;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow: hidden;
+        }
 
-@keyframes gradientShift{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.welcome-screen{text-align:center;animation:pulse 2s infinite;}
-.welcome-title{font-size:3rem;margin-bottom:2rem;}
+        /* Screens */
+        .welcome-screen { text-align: center; color: white; }
+        .welcome-title { font-size: 2.5rem; margin-bottom: 2rem; }
+        .welcome-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            background: #fff;
+            color: #333;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-.welcome-btn{
-    padding:1rem 2rem;
-    font-size:1.2rem;
-    border-radius:50px;
-    border:none;
-    background:#444;
-    color:white;
-    cursor:pointer;
-}
+        .main-container {
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            background: #fff; /* Paper background */
+            background-image: radial-gradient(#efefef 1px, transparent 0);
+            background-size: 20px 20px;
+            padding: 30px;
+            border-radius: 5px; /* Sharper edges like a real letter */
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            overflow-y: auto; 
+            position: relative;
+            border: 1px solid #ddd;
+        }
 
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.05);}
-    100%{transform:scale(1);}
-}
+        h1 { font-family: 'Dancing Script', cursive; color: #d63384; margin-bottom: 15px; font-size: 2.2rem; }
 
-.main-container{
-    display:none;
-    text-align:center;
-    max-width:700px;
-    padding:20px;
-}
+        .message {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            white-space: pre-line;
+            margin-bottom: 20px;
+            color: #444;
+        }
 
-.message{
-    margin-top:20px;
-    line-height:1.7;
-    font-size:1.1rem;
-    min-height:220px;
-}
+        .countdown {
+            background: #fff5f8;
+            padding: 15px;
+            border: 1px dashed #d63384;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #d63384;
+            margin-top: 10px;
+        }
 
-.countdown{margin-top:20px;font-size:1.2rem;}
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            font-size: 1.5rem;
+        }
 
-.music-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#333;
-    padding:10px 15px;
-    border-radius:50px;
-    cursor:pointer;
-}
+        /* Fireworks animation */
+        @keyframes firework {
+            0% { transform: translateY(0) scale(0); opacity: 1; }
+            100% { transform: translateY(-500px) scale(1.5); opacity: 0; }
+        }
 
-/* 🎆 fireworks */
-@keyframes firework{
-    0%{transform:translateY(0) scale(0);opacity:1;}
-    100%{transform:translateY(-300px) scale(1.5);opacity:0;}
-}
-</style>
+        /* Custom Scrollbar for the paper look */
+        .main-container::-webkit-scrollbar { width: 6px; }
+        .main-container::-webkit-scrollbar-track { background: #f1f1f1; }
+        .main-container::-webkit-scrollbar-thumb { background: #d63384; border-radius: 10px; }
+    </style>
 </head>
 
 <body>
@@ -90,155 +120,126 @@ body{
 </div>
 
 <div class="main-container" id="mainContainer">
-    <h1>Happy 21st Birthday, Matty 🎂✨</h1>
+    <h1>Happy 21st Birthday, Matty 🎂</h1>
     <div class="message" id="message"></div>
     <div class="countdown" id="countdown"></div>
 </div>
 
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
+<div class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</div>
 
-<audio id="bgMusic" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+    <source src="Libu-libong buwan (Lyrics) - Kyle Raphael (1).mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const bgMusic = document.getElementById("bgMusic");
 let isPlaying = false;
 
-/* 💖 MESSAGE */
-const fullMessage = `matty, my love...
+const fullMessage = `matty, my love;
 
 happy birthday, mahal ko.
 
 i don’t even know where to start, because no words ever feel enough when it comes to you.
 
-if i could gather every soft and gentle word in the world,
+if i could gather every soft and gentle word in the world, 
 i would stitch them together just to make something that could match how much you mean to me.
 
-you came into my life so quietly,
+you came into my life so quietly, 
 but somehow you became everything i didn’t even know i needed.
 
-you became my peace in the middle of chaos,
-my comfort on days i don’t feel okay,
+you became my peace in the middle of chaos, my comfort on days i don’t feel okay, 
 and the person i always run to without even thinking.
 
-i love the way you care,
-the way you try even when things are hard,
+i love the way you care, 
+the way you try even when things are hard, 
 the way you stay, even when it’s not easy.
 
-you make me feel safe in ways i can’t explain,
-like i can just be myself without fear,
+you make me feel safe in ways i can’t explain, 
+like i can just be myself without fear, 
 and that alone means everything to me.
 
-on your birthday,
-i just want you to feel even a small piece of the love you give to everyone around you,
+so today, 
+i just want you to feel even a small piece of the love you give to everyone around you, 
 especially to me.
 
-because you deserve a love that stays,
-a love that understands,
-a love that never gives up on you.
+because you deserve a love that stays, 
+a love that understands.
 
-and i hope you know…
-i’m here.
+and i hope you know… i’m here.
 
-through everything,
-in all the ways that i can be.
+through everything, in all the ways that i can be.
 
-i’ll stay loving you,
-today and in all the days after.
+i’ll stay loving you, today and in all the days after.
 
 happy birthday, my bebu ♡
 
 i love you more than words can ever hold.`;
 
-/* ✍️ typing */
-function typeMessage(text, element){
-    let i = 0;
-    function typing(){
-        if(i < text.length){
-            element.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-            i++;
-            setTimeout(typing, 25);
-        }
-    }
-    typing();
+function startExperience() {
+    document.getElementById("welcomeScreen").style.display = "none";
+    document.getElementById("mainContainer").style.display = "block";
+    
+    // Set message instantly
+    document.getElementById("message").innerText = fullMessage;
+
+    // Start Music
+    bgMusic.play().then(() => {
+        isPlaying = true;
+        document.getElementById("musicToggle").innerText = "⏸️";
+    }).catch(e => console.log("Interaction required for audio"));
+
+    setInterval(updateCountdown, 1000);
 }
 
-/* 🎆 fireworks */
-function launchFireworks(){
-    for(let i=0;i<40;i++){
-        const spark=document.createElement("div");
-        spark.style.position="fixed";
-        spark.style.left=Math.random()*100+"%";
-        spark.style.bottom="0";
-        spark.style.width="6px";
-        spark.style.height="6px";
-        spark.style.background=`hsl(${Math.random()*360},100%,70%)`;
-        spark.style.borderRadius="50%";
-        spark.style.animation="firework 1.5s ease-out forwards";
-        document.body.appendChild(spark);
-        setTimeout(()=>spark.remove(),1500);
-    }
+function launchFireworks() {
+    const spark = document.createElement("div");
+    spark.style.position = "fixed";
+    spark.style.left = Math.random() * 100 + "%";
+    spark.style.bottom = "0";
+    spark.style.width = "8px";
+    spark.style.height = "8px";
+    spark.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    spark.style.borderRadius = "50%";
+    spark.style.boxShadow = "0 0 10px white";
+    spark.style.animation = "firework 2s ease-out forwards";
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 2000);
 }
 
-/* ▶️ START (FIXED MUSIC) */
-function startExperience(){
-    const music = document.getElementById("bgMusic");
-
-    music.currentTime = 0;
-    music.muted = false;
-
-    const playPromise = music.play();
-
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            isPlaying = true;
-        }).catch(() => {
-            document.body.addEventListener("click", () => {
-                music.play();
-            }, { once: true });
-        });
-    }
-
-    document.getElementById("welcomeScreen").style.display="none";
-    document.getElementById("mainContainer").style.display="block";
-
-    typeMessage(fullMessage, document.getElementById("message"));
-    setInterval(updateCountdown,1000);
-}
-
-/* 🎵 toggle */
-function toggleMusic(){
-    if(isPlaying){
+function toggleMusic() {
+    if (isPlaying) {
         bgMusic.pause();
-    }else{
+        document.getElementById("musicToggle").innerText = "▶️";
+    } else {
         bgMusic.play();
+        document.getElementById("musicToggle").innerText = "⏸️";
     }
-    isPlaying=!isPlaying;
+    isPlaying = !isPlaying;
 }
 
-/* ⏳ countdown */
-function updateCountdown(){
-    const now=new Date();
-    const start=new Date(2026,3,7,0,0,0);
-    const end=new Date(2026,3,8,0,0,0);
+function updateCountdown() {
+    const now = new Date();
+    const start = new Date(2025, 3, 7, 0, 0, 0); 
+    const end = new Date(2025, 3, 8, 0, 0, 0);
 
-    if(now>=start && now<end){
-        document.getElementById("countdown").innerHTML=
-        "<h2>HAPPY BIRTHDAY BEBU 🎉💖</h2>";
+    if (now >= start && now < end) {
+        document.getElementById("countdown").innerHTML = "<h2>HAPPY BIRTHDAY BEBU 🎉💖</h2>";
         launchFireworks();
         return;
     }
 
-    const dist=start-now;
+    const dist = start - now;
+    if (dist < 0) {
+        document.getElementById("countdown").innerHTML = "Enjoy your special day, Matty! ✨";
+        return;
+    }
 
-    const d=Math.floor(dist/(1000*60*60*24));
-    const h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-    const m=Math.floor((dist%(1000*60*60))/(1000*60));
-    const s=Math.floor((dist%(1000*60))/1000);
+    const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((dist % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown").innerHTML=
-    d+" days "+h+" hrs "+m+" min "+s+" sec";
+    document.getElementById("countdown").innerHTML = `${d}d ${h}h ${m}m ${s}s until your day!`;
 }
 </script>
 
