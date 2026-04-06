@@ -1,152 +1,220 @@
-<!DOCTYPE hbd>
-<html lang=">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Bebu! 💖</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040, #5a5a5a);
-            background-size: 400% 400%; animation: gradientShift 15s ease infinite;
-            min-height: 100vh; display: flex; justify-content: center; align-items: center;
-            overflow-x: hidden; cursor: pointer; color: white;
-        }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        
-        .welcome-screen { text-align: center; animation: pulse 2s infinite; padding: 2rem; }
-        .welcome-title {
-            font-size: clamp(2rem, 8vw, 3.5rem); 
-            background: linear-gradient(45deg, #ffffff, #e0e0e0, #d4a7ff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            margin-bottom: 2rem; text-shadow: 0 0 30px rgba(255,255,255,0.8);
-        }
-        .welcome-btn {
-            background: linear-gradient(145deg, #333, #555); color: white; border: 2px solid #aaa;
-            padding: 1.5rem 3rem; font-size: clamp(1rem, 4vw, 1.5rem); font-weight: 700; border-radius: 50px;
-            cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.6); transition: all 0.3s ease;
-            text-transform: uppercase; letter-spacing: 2px; margin: 1rem 0;
-        }
-        .welcome-btn:hover { 
-            transform: translateY(-5px) scale(1.05); 
-            background: linear-gradient(145deg, #555, #777); 
-            box-shadow: 0 20px 45px rgba(255,255,255,0.2); 
-        }
-        .welcome-btn:active { transform: translateY(-2px) scale(1.02); }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        
-        .main-container {
-            display: none; text-align: center; 
-            background: rgba(40,40,40,0.
-    
-    <div class="welcome-screen" id="welcomeScreen">
-        <div class="welcome-title">appy birthday, my bebu! </div>
-        <br><br>
-        <button class="welcome-btn" onclick="revealSurprise()">
-            👆 click pls, bawal maarte :p
-        </button>
-        <p style="color: #e0e0e0; margin-top: 2rem; font-size: 1.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
-            (pls appreciate, ang hirap nito)
-        </p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Bebu 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040, #5a5a5a);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.welcome-screen {
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+.welcome-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.welcome-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    border: none;
+    background: #444;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.welcome-btn:hover {
+    background: #666;
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+    100% {transform: scale(1);}
+}
+
+.main-container {
+    display: none;
+    text-align: center;
+    max-width: 700px;
+    padding: 20px;
+}
+
+.message {
+    margin-top: 20px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.hearts {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.countdown {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* 💖 floating hearts animation */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="welcome-screen" id="welcomeScreen">
+    <div class="welcome-title">happy birthday, my bebu 💖</div>
+    <button class="welcome-btn" onclick="revealSurprise()">click pls 😭</button>
+</div>
+
+<div class="main-container" id="mainContainer">
+    <h1>Happy 21st Birthday, Matty 🎂✨</h1>
+    <div class="hearts">💖💖💖</div>
+
+    <div class="message">
+        matty, my love 🥺 <br><br>
+
+        happy birthday, mahal ko.<br><br>
+
+        if i could gather all the softest words,<br>
+        i'd stitch them into a sky just for you—<br>
+        so every time you look up,<br>
+        you'd remember how deeply you are loved.<br><br>
+
+        you became my peace,<br>
+        my safe place,<br>
+        my favorite person.<br><br>
+
+        i love you so much, always ♡
     </div>
-    
-    <div class="fireworks" id="fireworks"></div>
-    <div class="main-container" id="mainContainer">
-        <h1>Happy 21st Birthday, Matty! 🎂✨</h1>
-        <div class="hearts">💖💖💖</div>
-        <div class="message">
-            matty, my love! 🥰<br><br>
-            happy birthday, mahal ko 
-            if i could gather all the softest words,
-            i'd stitch them into a sky just for you—
-            so every time you look up,
-            you'd remember how deeply you are loved.<br><br>
 
-            you came into my life quietly,
-            but somehow you became my peace,
-            my safe place in the middle of everything,
-            the one who makes ordinary days feel warm.
+    <div class="countdown" id="countdown"></div>
+</div>
 
-            i love the way you care,
-            the way you try, even when things are hard,
-            the way you hold me without even touching—
-            just by being you. 
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
 
-            so today, i hope you feel even a fraction of what you give,
-            because you deserve a love that stays,
-            even if we don't know what the world what would give us,
-            i hope you know that i'm here, always.
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-            i'll be here,
-            loving you in all the ways i know how,
-            today and in all the days after.
+<script>
+const bgMusic = document.getElementById("bgMusic");
+let isPlaying = false;
 
-            happy birthday, my bebu ♡<br><br>
-            i love you so much!
-        </div>
-        <div class="countdown" id="countdown"></div>
-    </div>
+function revealSurprise() {
+    document.getElementById("welcomeScreen").style.display = "none";
+    document.getElementById("mainContainer").style.display = "block";
 
-    <audio id="bgMusic" loop preload="auto"></audio>
+    bgMusic.play().catch(()=>{});
+    isPlaying = true;
 
-    <script>
-        /* 🎂 MATTY'S 21st BIRTHDAY: April 21, 2005 → 2026 */
-        const BIRTHDAY = new Date(2026, 4, 06); // ✅ APRIL 21st SET!
-        
-        const MUSIC = {
-            libu: "https://youtu.be/G1zOlLtq2-c?si=xCtYcj8Mb31M_5yM; ",
-        };
-        
-        let isPlaying = false; const bgMusic = document.getElementById('bgMusic');
-        
-        function revealSurprise() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('mainContainer').style.display = 'block';
-            document.querySelector('.music-controls').style.display = 'block';
-            playMusic(); setInterval(updateCountdown, 1000); updateCountdown();
-        }
-        
-        function playMusic() { 
-            bgMusic.src = MUSIC.
-            bgMusic.play().catch(() => {}); 
-            isPlaying = true; 
-        }
-        function toggleMusic() { isPlaying ? bgMusic.pause() : bgMusic.play(); isPlaying = !isPlaying; }
-        function changeMusic(type) { if(MUSIC[type]) { bgMusic.src = MUSIC[type]; if(isPlaying) bgMusic.play(); } }
-        
-        function updateCountdown() {
-            const distance = BIRTHDAY - new Date();
-            if(distance < 0) {
-                document.getElementById('countdown').innerHTML = '<div style="font-size:2rem;color:#fff;font-weight:700;">HAPPY BIRTHDAY BEBU! 🎉💖</div>';
-                createFireworks(); return;
-            }
-            const d = Math.floor(distance / (1000*60*60*24));
-            const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-            const m = Math.floor((distance%(1000*60*60))/(1000*60));
-            const s = Math.floor((distance%(1000*60))/1000);
-            document.getElementById('countdown').innerHTML = `
-                <div class="time-unit"><span class="time-number">${d}</span><span class="time-label">Days</span></div>
-                <div class="time-unit"><span class="time-number">${h}</span><span class="time-label">Hours</span></div>
-                <div class="time-unit"><span class="time-number">${m}</span><span class="time-label">Minutes</span></div>
-                <div class="time-unit"><span class="time-number">${s}</span><span class="time-label">Seconds</span></div>
-            `;
-        }
-        
-        function createFireworks() {
-            const fw = document.getElementById('fireworks');
-            for(let i = 0; i < 50; i++) setTimeout(() => {
-                const spark = document.createElement('div');
-                spark.style.cssText = `position:absolute;left:${Math.random()*100}%;top:${Math.random()*100}%;width:6px;height:6px;background:hsl(${Math.random()*360},100%,70%);border-radius:50%;pointer-events:none;animation:fireworkAnim 2s ease-out forwards;z-index:100;`;
-                fw.appendChild(spark); setTimeout(()=>spark.remove(),2000);
-            }, i*80);
-        }
-        
-        const style = document.createElement('style');
-        style.textContent = `@keyframes fireworkAnim{0%{transform:scale(0) translateY(0);opacity:1;}100%{transform:scale(1) translateY(-100vh);opacity:0;}}`;
-        document.head.appendChild(style);
-        document.body.onclick = () => document.getElementById('welcomeScreen').style.display !== 'none' && revealSurprise();
-    </script>
+    setInterval(updateCountdown, 1000);
+}
+
+function toggleMusic() {
+    if(isPlaying){
+        bgMusic.pause();
+    } else {
+        bgMusic.play();
+    }
+    isPlaying = !isPlaying;
+}
+
+function updateCountdown() {
+    const now = new Date();
+
+    const birthdayStart = new Date(2026, 3, 7, 0, 0, 0);
+    const nextDay = new Date(2026, 3, 8, 0, 0, 0);
+
+    // 🎉 EXACT MIDNIGHT TRIGGER
+    if (now >= birthdayStart && now < nextDay) {
+        document.getElementById("countdown").innerHTML =
+            "<h2>HAPPY BIRTHDAY BEBU 🎉💖</h2>";
+
+        launchHearts();
+        return;
+    }
+
+    const distance = birthdayStart - now;
+
+    const d = Math.floor(distance / (1000*60*60*24));
+    const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((distance%(1000*60*60))/(1000*60));
+    const s = Math.floor((distance%(1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+        d+" days "+h+" hrs "+m+" min "+s+" sec";
+}
+
+function launchHearts() {
+    for(let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.bottom = "0";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        heart.style.animation = "floatUp 3s linear forwards";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+    }
+}
+</script>
+
 </body>
 </html>
