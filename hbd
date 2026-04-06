@@ -8,106 +8,76 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#1a1a1a,#2d2d2d,#404040,#5a5a5a);
+    background-size:400% 400%;
+    animation:gradientShift 12s ease infinite;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040, #5a5a5a);
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    overflow: hidden;
+@keyframes gradientShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-@keyframes gradientShift {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+.welcome-screen{text-align:center;animation:pulse 2s infinite;}
+.welcome-title{font-size:3rem;margin-bottom:2rem;}
+
+.welcome-btn{
+    padding:1rem 2rem;
+    font-size:1.2rem;
+    border-radius:50px;
+    border:none;
+    background:#444;
+    color:white;
+    cursor:pointer;
 }
 
-.welcome-screen {
-    text-align: center;
-    animation: pulse 2s infinite;
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
 }
 
-.welcome-title {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+.main-container{
+    display:none;
+    text-align:center;
+    max-width:700px;
+    padding:20px;
 }
 
-.welcome-btn {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    border: none;
-    background: #444;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
+.message{
+    margin-top:20px;
+    line-height:1.7;
+    font-size:1.1rem;
+    min-height:220px;
 }
 
-.welcome-btn:hover {
-    background: #666;
-    transform: scale(1.05);
+.countdown{margin-top:20px;font-size:1.2rem;}
+
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#333;
+    padding:10px 15px;
+    border-radius:50px;
+    cursor:pointer;
 }
 
-@keyframes pulse {
-    0% {transform: scale(1);}
-    50% {transform: scale(1.05);}
-    100% {transform: scale(1);}
-}
-
-.main-container {
-    display: none;
-    text-align: center;
-    max-width: 700px;
-    padding: 20px;
-}
-
-.message {
-    margin-top: 20px;
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.hearts {
-    font-size: 2rem;
-    margin: 10px 0;
-}
-
-.countdown {
-    margin-top: 20px;
-    font-size: 1.2rem;
-}
-
-.music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #333;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-/* 💖 floating hearts animation */
-@keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
+/* 🎆 fireworks */
+@keyframes firework{
+    0%{transform:translateY(0) scale(0);opacity:1;}
+    100%{transform:translateY(-300px) scale(1.5);opacity:0;}
 }
 </style>
 </head>
@@ -116,36 +86,18 @@ body {
 
 <div class="welcome-screen" id="welcomeScreen">
     <div class="welcome-title">happy birthday, my bebu 💖</div>
-    <button class="welcome-btn" onclick="revealSurprise()">click pls 😭</button>
+    <button class="welcome-btn" onclick="startExperience()">click pls 😭</button>
 </div>
 
 <div class="main-container" id="mainContainer">
     <h1>Happy 21st Birthday, Matty 🎂✨</h1>
-    <div class="hearts">💖💖💖</div>
-
-    <div class="message">
-        matty, my love 🥺 <br><br>
-
-        happy birthday, mahal ko.<br><br>
-
-        if i could gather all the softest words,<br>
-        i'd stitch them into a sky just for you—<br>
-        so every time you look up,<br>
-        you'd remember how deeply you are loved.<br><br>
-
-        you became my peace,<br>
-        my safe place,<br>
-        my favorite person.<br><br>
-
-        i love you so much, always ♡
-    </div>
-
+    <div class="message" id="message"></div>
     <div class="countdown" id="countdown"></div>
 </div>
 
 <div class="music-btn" onclick="toggleMusic()">🎵</div>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -153,66 +105,140 @@ body {
 const bgMusic = document.getElementById("bgMusic");
 let isPlaying = false;
 
-function revealSurprise() {
-    document.getElementById("welcomeScreen").style.display = "none";
-    document.getElementById("mainContainer").style.display = "block";
+/* 💖 MESSAGE */
+const fullMessage = `matty, my love...
 
-    bgMusic.play().catch(()=>{});
-    isPlaying = true;
+happy birthday, mahal ko.
 
-    setInterval(updateCountdown, 1000);
+i don’t even know where to start, because no words ever feel enough when it comes to you.
+
+if i could gather every soft and gentle word in the world,
+i would stitch them together just to make something that could match how much you mean to me.
+
+you came into my life so quietly,
+but somehow you became everything i didn’t even know i needed.
+
+you became my peace in the middle of chaos,
+my comfort on days i don’t feel okay,
+and the person i always run to without even thinking.
+
+i love the way you care,
+the way you try even when things are hard,
+the way you stay, even when it’s not easy.
+
+you make me feel safe in ways i can’t explain,
+like i can just be myself without fear,
+and that alone means everything to me.
+
+on your birthday,
+i just want you to feel even a small piece of the love you give to everyone around you,
+especially to me.
+
+because you deserve a love that stays,
+a love that understands,
+a love that never gives up on you.
+
+and i hope you know…
+i’m here.
+
+through everything,
+in all the ways that i can be.
+
+i’ll stay loving you,
+today and in all the days after.
+
+happy birthday, my bebu ♡
+
+i love you more than words can ever hold.`;
+
+/* ✍️ typing */
+function typeMessage(text, element){
+    let i = 0;
+    function typing(){
+        if(i < text.length){
+            element.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+            i++;
+            setTimeout(typing, 25);
+        }
+    }
+    typing();
 }
 
-function toggleMusic() {
+/* 🎆 fireworks */
+function launchFireworks(){
+    for(let i=0;i<40;i++){
+        const spark=document.createElement("div");
+        spark.style.position="fixed";
+        spark.style.left=Math.random()*100+"%";
+        spark.style.bottom="0";
+        spark.style.width="6px";
+        spark.style.height="6px";
+        spark.style.background=`hsl(${Math.random()*360},100%,70%)`;
+        spark.style.borderRadius="50%";
+        spark.style.animation="firework 1.5s ease-out forwards";
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),1500);
+    }
+}
+
+/* ▶️ START (FIXED MUSIC) */
+function startExperience(){
+    const music = document.getElementById("bgMusic");
+
+    music.currentTime = 0;
+    music.muted = false;
+
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            isPlaying = true;
+        }).catch(() => {
+            document.body.addEventListener("click", () => {
+                music.play();
+            }, { once: true });
+        });
+    }
+
+    document.getElementById("welcomeScreen").style.display="none";
+    document.getElementById("mainContainer").style.display="block";
+
+    typeMessage(fullMessage, document.getElementById("message"));
+    setInterval(updateCountdown,1000);
+}
+
+/* 🎵 toggle */
+function toggleMusic(){
     if(isPlaying){
         bgMusic.pause();
-    } else {
+    }else{
         bgMusic.play();
     }
-    isPlaying = !isPlaying;
+    isPlaying=!isPlaying;
 }
 
-function updateCountdown() {
-    const now = new Date();
+/* ⏳ countdown */
+function updateCountdown(){
+    const now=new Date();
+    const start=new Date(2026,3,7,0,0,0);
+    const end=new Date(2026,3,8,0,0,0);
 
-    const birthdayStart = new Date(2026, 3, 7, 0, 0, 0);
-    const nextDay = new Date(2026, 3, 8, 0, 0, 0);
-
-    // 🎉 EXACT MIDNIGHT TRIGGER
-    if (now >= birthdayStart && now < nextDay) {
-        document.getElementById("countdown").innerHTML =
-            "<h2>HAPPY BIRTHDAY BEBU 🎉💖</h2>";
-
-        launchHearts();
+    if(now>=start && now<end){
+        document.getElementById("countdown").innerHTML=
+        "<h2>HAPPY BIRTHDAY BEBU 🎉💖</h2>";
+        launchFireworks();
         return;
     }
 
-    const distance = birthdayStart - now;
+    const dist=start-now;
 
-    const d = Math.floor(distance / (1000*60*60*24));
-    const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    const m = Math.floor((distance%(1000*60*60))/(1000*60));
-    const s = Math.floor((distance%(1000*60))/1000);
+    const d=Math.floor(dist/(1000*60*60*24));
+    const h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+    const m=Math.floor((dist%(1000*60*60))/(1000*60));
+    const s=Math.floor((dist%(1000*60))/1000);
 
-    document.getElementById("countdown").innerHTML =
-        d+" days "+h+" hrs "+m+" min "+s+" sec";
-}
-
-function launchHearts() {
-    for(let i = 0; i < 30; i++) {
-        const heart = document.createElement("div");
-        heart.innerHTML = "💖";
-
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.bottom = "0";
-        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-        heart.style.animation = "floatUp 3s linear forwards";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 3000);
-    }
+    document.getElementById("countdown").innerHTML=
+    d+" days "+h+" hrs "+m+" min "+s+" sec";
 }
 </script>
 
